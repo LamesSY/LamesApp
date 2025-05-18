@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_round_rect_r15"
+    android:paddingBottom="20dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/img_upgrade_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/RoundCornerStyle8dp" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="15dp"
+        android:src="@drawable/ic_linear_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/versionCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_round_rect_r90"
+        android:backgroundTint="#FFFF6C00"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="2dp"
+        android:textColor="?attr/text_1_rev"
+        android:textSize="?attr/tsp14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="v1.0.0" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/versionCode"
+        app:layout_constraintTop_toBottomOf="@id/versionCode"
+        android:text="发现新版本" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/title_new_version_content"
+        android:textColor="?attr/text_1"
+        android:textSize="?attr/tsp18"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="5dp"
+        android:textColor="?attr/text_4"
+        android:textSize="?attr/tsp16"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        tools:text="@tools:sample/lorem" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/upgrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/upgrade_now"
+        app:layout_constraintTop_toBottomOf="@id/content" />
+
+    <LinearLayout
+        android:id="@+id/downloadLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/content"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/downloadTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/text_1"
+            android:textSize="?attr/tsp16"
+            tools:text="下载中80%" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/downloadProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="5dp"
+            android:max="100"
+            app:layout_constraintBottom_toBottomOf="@id/upgrade"
+            app:layout_constraintTop_toTopOf="@id/upgrade"
+            app:trackColor="?attr/colorPrimaryContainer"
+            app:trackCornerRadius="30dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

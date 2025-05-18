@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_home_bg"
+    android:orientation="vertical">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/homeVp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/homeTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="?attr/colorPrimary"
+            android:paddingBottom="34dp"
+            app:tabGravity="fill"
+            app:tabIndicator="@drawable/shape_tab_indicator"
+            app:tabIndicatorColor="?attr/text_1_rev"
+            app:tabMode="fixed"
+            app:tabMaxWidth="0dp"
+            app:tabTextAppearance="@style/TabTextSize"
+            app:tabTextColor="?attr/text_1_rev">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_page" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mine" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/ripple_home_measure_btn"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:text="@string/measure"
+        android:textColor="?attr/text_1_rev"
+        android:textSize="?attr/tsp18"
+        android:textStyle="bold" />
+
+</FrameLayout>

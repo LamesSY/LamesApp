@@ -1,0 +1,89 @@
+<resources>
+    <color name="md_theme_primary">#FFE29543</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#D6E3FF</color>
+    <color name="md_theme_onPrimaryContainer">#001B3E</color>
+    <color name="md_theme_secondary">#565F71</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#DAE2F9</color>
+    <color name="md_theme_onSecondaryContainer">#131C2B</color>
+    <color name="md_theme_tertiary">#705575</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#FAD8FD</color>
+    <color name="md_theme_onTertiaryContainer">#28132E</color>
+    <color name="md_theme_error">#BA1A1A</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_errorContainer">#FFDAD6</color>
+    <color name="md_theme_onErrorContainer">#410002</color>
+    <color name="md_theme_background">#F9F9FF</color>
+    <color name="md_theme_onBackground">#191C20</color>
+    <color name="md_theme_surface">#F9F9FF</color>
+    <color name="md_theme_onSurface">#191C20</color>
+    <color name="md_theme_surfaceVariant">#E0E2EC</color>
+    <color name="md_theme_onSurfaceVariant">#44474E</color>
+    <color name="md_theme_outline">#74777F</color>
+    <color name="md_theme_outlineVariant">#C4C6D0</color>
+    <color name="md_theme_inverseSurface">#2E3036</color>
+    <color name="md_theme_inverseOnSurface">#F0F0F7</color>
+    <color name="md_theme_inversePrimary">#AAC7FF</color>
+    <color name="md_theme_primaryFixed">#D6E3FF</color>
+    <color name="md_theme_onPrimaryFixed">#001B3E</color>
+    <color name="md_theme_primaryFixedDim">#AAC7FF</color>
+    <color name="md_theme_onPrimaryFixedVariant">#284777</color>
+    <color name="md_theme_secondaryFixed">#DAE2F9</color>
+    <color name="md_theme_onSecondaryFixed">#131C2B</color>
+    <color name="md_theme_secondaryFixedDim">#BEC6DC</color>
+    <color name="md_theme_onSecondaryFixedVariant">#3E4759</color>
+    <color name="md_theme_tertiaryFixed">#FAD8FD</color>
+    <color name="md_theme_onTertiaryFixed">#28132E</color>
+    <color name="md_theme_tertiaryFixedDim">#DDBCE0</color>
+    <color name="md_theme_onTertiaryFixedVariant">#573E5C</color>
+    <color name="md_theme_surfaceDim">#D9D9E0</color>
+    <color name="md_theme_surfaceBright">#F9F9FF</color>
+    <color name="md_theme_surfaceContainerLowest">#FFFFFF</color>
+    <color name="md_theme_surfaceContainerLow">#F3F3FA</color>
+    <color name="md_theme_surfaceContainer">#EDEDF4</color>
+    <color name="md_theme_surfaceContainerHigh">#E7E8EE</color>
+    <color name="md_theme_surfaceContainerHighest">#E2E2E9</color>
+
+    <color name="alpha_black_1">#70000000</color>
+
+    <color name="text_1">#02010E</color>
+    <color name="text_2">#CC02010E</color>
+    <color name="text_3">#9902010E</color>
+    <color name="text_4">#6602010E</color>
+    <color name="text_1_rev">#FFFFFF</color>
+    <color name="text_2_rev">#CCFFFFFF</color>
+    <color name="text_3_rev">#99FFFFFF</color>
+    <color name="text_4_rev">#66FFFFFF</color>
+
+    <color name="windowBg_1">#FFFFFF</color>
+    <color name="windowBg_2">#FFF2F4F8</color>
+    <color name="windowBg_1_rev">#000000</color>
+    <color name="divider_1">#1A040415</color>
+    <color name="divider_2">#66FFFFFF</color>
+
+    <color name="windowBg_3">#FFF3F3F3</color>
+
+    <color name="windowBg_4">#FFE5E5E5</color>
+
+    <color name="no_focus">#F5F4F9</color>
+    <color name="no_focus_active">#E6E4EC</color>
+    <color name="no_focus_disable">#C2C1C5</color>
+
+    <color name="transparent">@android:color/transparent</color>
+
+    <color name="light_ripple_color">#22E29543</color>
+
+    <color name="label_1">#FF7751FF</color>
+
+    <color name="label_low">#FF4688F1</color>
+    <color name="label_normal">#FF44DB98</color>
+    <color name="label_high">#FFE02020</color>
+
+    <color name="label_warning">#FFF6B52F</color>
+    <color name="label_warning2">#FFFF7400</color>
+
+    <color name="color_important">#FF792BC6</color>
+
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/windowBg_1"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_app_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/set_pwd"
+        android:textColor="?attr/text_1"
+        android:textSize="?attr/tsp14" />
+
+    <EditText
+        android:id="@+id/pwd1"
+        style="@style/XTEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_edit_r5"
+        android:hint="@string/plz_input_password"
+        android:inputType="textPassword"
+        android:paddingHorizontal="10dp" />
+
+    <EditText
+        android:id="@+id/pwd2"
+        style="@style/XTEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_edit_r5"
+        android:hint="@string/plz_input_password_again"
+        android:inputType="textPassword"
+        android:paddingHorizontal="10dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/finish"
+        style="@style/XTFillButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/finish" />
+
+</LinearLayout>

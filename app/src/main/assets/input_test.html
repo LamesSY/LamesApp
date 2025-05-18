@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>File Upload Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 10px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #result { margin-top: 20px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+<h2>文件上传测试</h2>
+
+<!-- 测试 1: 通用文件选择 -->
+<div class="section">
+    <h3>1. 选择任意文件</h3>
+    <input type="file" id="fileInput"/>
+    <button onclick="document.getElementById('fileInput').click()">选择文件</button>
+</div>
+
+<!-- 测试 2: 图片选择 -->
+<div class="section">
+    <h3>2. 选择图片 (accept="image/*")</h3>
+    <input type="file" id="imageInput" accept="image/*"/>
+    <button onclick="document.getElementById('imageInput').click()">选择图片</button>
+</div>
+
+<!-- 测试 3: PDF 选择 -->
+<div class="section">
+    <h3>3. 选择 PDF (accept="application/pdf")</h3>
+    <input type="file" id="pdfInput" accept="application/pdf"/>
+    <button onclick="document.getElementById('pdfInput').click()">选择 PDF</button>
+</div>
+
+<!-- 测试 4: 多文件选择 -->
+<div class="section">
+    <h3>4. 多文件选择 (multiple)</h3>
+    <input type="file" id="multiInput" multiple/>
+    <button onclick="document.getElementById('multiInput').click()">选择多个文件</button>
+</div>
+
+<!-- 显示结果 -->
+<div id="result"></div>
+
+<script>
+    // 监听所有 input[type=file] 的变更事件
+    document.querySelectorAll('input[type=file]').forEach(input => {
+        input.addEventListener('change', function(e) {
+            const files = e.target.files;
+            let output = `已选择文件 (${files.length} 个):\n`;
+
+            // 遍历文件列表
+            for (const file of files) {
+                output += `--------------------------------\n`;
+                output += `文件名: ${file.name}\n`;
+                output += `文件类型: ${file.type}\n`;
+                output += `文件大小: ${(file.size / 1024).toFixed(2)} KB\n`;
+            }
+
+            // 显示结果
+            document.getElementById('result').textContent = output;
+        });
+    });
+</script>
+</body>
+</html>

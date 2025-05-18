@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/barcodeView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/ripple_round_rect_r90"
+        android:src="@drawable/ic_linear_close" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/text_1_rev"
+        android:textSize="11sp" />
+
+    <FrameLayout
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="top|start"
+            android:background="@color/windowBg_1" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="bottom|start"
+            android:background="@color/windowBg_1" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="top|end"
+            android:background="@color/windowBg_1" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_gravity="bottom|end"
+            android:background="@color/windowBg_1" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="30dp"
+            android:layout_gravity="top|start"
+            android:background="@color/windowBg_1" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom|start"
+            android:background="@color/windowBg_1" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="30dp"
+            android:layout_gravity="top|end"
+            android:background="@color/windowBg_1" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom|end"
+            android:background="@color/windowBg_1" />
+
+    </FrameLayout>
+
+</FrameLayout>

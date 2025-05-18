@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_round_rect_r15"
+    android:elevation="0dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/alertTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/privacy_policy"
+        android:textColor="?attr/text_1"
+        android:textSize="?attr/tsp18"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/alertContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/text_3"
+            android:textSize="?attr/tsp14" />
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel"
+            style="@style/XTTextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="20dp"
+            android:text="@string/reject_and_quit"
+            android:textColor="?attr/text_4"
+            android:textSize="?attr/tsp14"
+            app:cornerRadius="0dp" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="15dp"
+            android:background="?attr/divider_1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirm"
+            style="@style/XTTextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="20dp"
+            android:text="@string/i_read_and_agree"
+            android:textSize="?attr/tsp14"
+            app:cornerRadius="0dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

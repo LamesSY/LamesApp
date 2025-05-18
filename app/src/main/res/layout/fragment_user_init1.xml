@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/windowBg_1"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/appBack"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginVertical="10dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/ripple_effect"
+        android:backgroundTint="@color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_back" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/finish_info"
+                android:textColor="?attr/text_1"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/tip_plz_input_real_health_info"
+                android:textColor="?attr/text_4"
+                android:textSize="?attr/tsp18" />
+
+            <FrameLayout
+                android:id="@+id/avatarLayout"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/img_default_avatar"
+                    app:shapeAppearance="@style/CircleImageStyle" />
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_gravity="end|bottom"
+                    android:background="@drawable/shape_round_rect_r90"
+                    android:backgroundTint="?attr/divider_1"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_linear_camera" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/name"
+                android:textColor="?attr/text_1"
+                android:textSize="?attr/tsp18" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/selector_edit_r5"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:hint="@string/plz_input"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp"
+                android:textColor="?attr/text_1"
+                android:textSize="?attr/tsp18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/gender"
+                android:textColor="?attr/text_1"
+                android:textSize="?attr/tsp18" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <CheckedTextView
+                    android:id="@+id/male"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_round_rect_r5"
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:checked="true"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="15dp"
+                    android:text="@string/male"
+                    android:textAlignment="center"
+                    android:textColor="?attr/text_1_rev"
+                    android:textSize="?attr/tsp18"
+                    android:textStyle="bold" />
+
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="0dp" />
+
+                <CheckedTextView
+                    android:id="@+id/female"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ripple_round_rect_r5"
+                    android:backgroundTint="?attr/windowBg_2"
+                    android:gravity="center"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="15dp"
+                    android:text="@string/female"
+                    android:textAlignment="center"
+                    android:textColor="?attr/text_1"
+                    android:textSize="?attr/tsp18" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/birth_date"
+                android:textColor="?attr/text_1"
+                android:textSize="?attr/tsp18" />
+
+            <TextView
+                android:id="@+id/birthDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ripple_round_rect_r5"
+                android:backgroundTint="?attr/windowBg_2"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="15dp"
+                android:text="1965-01-01"
+                android:textColor="?attr/text_1"
+                android:textSize="?attr/tsp18"
+                app:drawableEndCompat="@drawable/ic_arrow_linear_right" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nextStep"
+                style="@style/XTFillButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="40dp"
+                android:text="@string/next_step" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

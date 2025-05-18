@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="themeColor" format="color|reference" />
+    <attr name="colorError" format="color|reference" />
+    <attr name="no_focus" format="color|reference" />
+    <attr name="no_focus_active" format="color|reference" />
+    <attr name="no_focus_disable" format="color|reference" />
+    <attr name="text_1" format="color|reference" />
+    <attr name="text_2" format="color|reference" />
+    <attr name="text_3" format="color|reference" />
+    <attr name="text_4" format="color|reference" />
+    <attr name="text_1_rev" format="color|reference" />
+    <attr name="text_2_rev" format="color|reference" />
+    <attr name="text_3_rev" format="color|reference" />
+    <attr name="text_4_rev" format="color|reference" />
+    <attr name="windowBg_1" format="color|reference" />
+    <attr name="windowBg_2" format="color|reference" />
+    <attr name="windowBg_3" format="color|reference" />
+    <attr name="windowBg_4" format="color|reference" />
+    <attr name="mask_cover_1" format="color|reference" />
+    <attr name="mask_cover_2" format="color|reference" />
+    <attr name="divider_1" format="color|reference" />
+    <attr name="divider_2" format="color|reference" />
+    <attr name="ripple_color" format="color|reference" />
+
+    <attr name="tsp14" format="color|dimension" />
+    <attr name="tsp16" format="color|dimension" />
+    <attr name="tsp18" format="color|dimension" />
+    <attr name="tsp20" format="color|dimension" />
+
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="swipeEnable" format="boolean" />
+        <attr name="ios" format="boolean" />
+        <attr name="leftSwipe" format="boolean" />
+    </declare-styleable>
+
+    <!--普通卷尺控件-->
+    <declare-styleable name="RulerView">
+        <!--背景色-->
+        <attr name="bgColor" format="reference|color" />
+        <!--刻度颜色-->
+        <attr name="gradationColor" format="reference|color" />
+        <!--短刻度线宽度-->
+        <attr name="shortLineWidth" format="reference|dimension" />
+        <!--长刻度线宽度-->
+        <attr name="longLineWidth" format="reference|dimension" />
+        <!--短刻度长度-->
+        <attr name="shortGradationLen" format="reference|dimension" />
+        <!--长刻度长度-->
+        <attr name="longGradationLen" format="reference|dimension" />
+        <!--刻度字体颜色-->
+        <attr name="textColor" format="reference|color" />
+        <!--刻度字体大小-->
+        <attr name="textSize" format="reference|dimension" />
+        <!--中间指针线颜色-->
+        <attr name="indicatorLineColor" format="reference|color" />
+        <!--中间指针线宽度-->
+        <attr name="indicatorLineWidth" format="reference|dimension" />
+        <!--中间指针线长度-->
+        <attr name="indicatorLineLen" format="reference|dimension" />
+        <!--最小值-->
+        <attr name="minValue" format="reference|float" />
+        <!--最大值-->
+        <attr name="maxValue" format="reference|float" />
+        <!--当前值-->
+        <attr name="currentValue" format="reference|float" />
+        <!--刻度最小单位-->
+        <attr name="gradationUnit" format="reference|float" />
+        <!--需要绘制数值之间的最小单位个数-->
+        <attr name="numberPerCount" format="reference|integer" />
+        <!--刻度间距离-->
+        <attr name="gradationGap" format="reference|dimension" />
+        <!--刻度与文字的间距-->
+        <attr name="gradationNumberGap" format="reference|dimension" />
+    </declare-styleable>
+</resources>

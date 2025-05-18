@@ -1,0 +1,85 @@
+[versions]
+alicloudAndroidPush = "3.9.1"
+androidImageCropper = "4.6.0"
+cameraCore = "1.1.0-alpha06"
+cameraView = "1.0.0-alpha26"
+core = "3.4.1"
+coreKtx = "1.9.0"
+appcompat = "1.6.1"
+atyKtx = "1.8.0"
+fragmentKtx = "1.6.2"
+material = "1.11.0"
+constraintlayout = "2.1.4"
+okhttp = "4.12.0"
+ossAndroidSdk = "2.9.19"
+qnscalesdkx = "2.21.5"
+rxhttp = "3.2.4"
+glide = "4.13.1"
+glideCompiler = "4.12.0"
+brv = "1.5.8"
+mmkv = "1.2.12"
+refresh = "2.1.0"
+gson = "2.10.1"
+flexbox = "3.0.0"
+loadsir = "1.3.8"
+permissions = "18.62"
+rxhttpCompiler = "3.2.4"
+junit = "4.13.2"
+extJunit = "1.1.5"
+espressoCore = "3.5.1"
+huaweiHealth = "2.12.0.103"
+mpAndroid = "v3.1.0"
+pickerView = "4.1.9"
+scanplus = "1.3.2.300"
+swiperefreshlayout = "1.2.0-alpha01"
+wechatSdkAndroidWithoutMta = "6.7.9"
+workRuntimeKtx = "2.8.1"
+zxingAndroidEmbedded = "4.3.0"
+firebaseFirestoreKtx = "25.1.3"
+
+[libraries]
+alicloudAndroidPush = { module = "com.aliyun.ams:alicloud-android-push", version.ref = "alicloudAndroidPush" }
+androidImageCropper = { module = "com.vanniktech:android-image-cropper", version.ref = "androidImageCropper" }
+androidxKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+activityKtx = { module = "androidx.activity:activity-ktx", version.ref = "atyKtx" }
+cameraCore = { module = "androidx.camera:camera-core", version.ref = "cameraCore" }
+cameraExtensions = { module = "androidx.camera:camera-extensions", version.ref = "cameraView" }
+cameraLifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraCore" }
+cameraView = { module = "androidx.camera:camera-view", version.ref = "cameraView" }
+core = { module = "com.google.zxing:core", version.ref = "core" }
+fragmentKtx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+ossAndroidSdk = { module = "com.aliyun.dpa:oss-android-sdk", version.ref = "ossAndroidSdk" }
+qnscalesdkx = { module = "com.github.YolandaQingniu:qnscalesdkX", version.ref = "qnscalesdkx" }
+rxhttp = { module = "com.github.liujingxing.rxhttp:rxhttp", version.ref = "rxhttp" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glideCompiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glideCompiler" }
+brv = { module = "com.github.liangjingkanji:BRV", version.ref = "brv" }
+mmkv = { module = "com.tencent:mmkv-static", version.ref = "mmkv" }
+refreshKernel = { module = "io.github.scwang90:refresh-layout-kernel", version.ref = "refresh" }
+refreshHeader = { module = "io.github.scwang90:refresh-header-classics", version.ref = "refresh" }
+refreshFooter = { module = "io.github.scwang90:refresh-footer-classics", version.ref = "refresh" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
+loadsir = { module = "com.kingja.loadsir:loadsir", version.ref = "loadsir" }
+permissions = { module = "com.github.getActivity:XXPermissions", version.ref = "permissions" }
+rxhttpCompiler = { module = "com.github.liujingxing.rxhttp:rxhttp-compiler", version.ref = "rxhttpCompiler" }
+hwService = { module = "com.huawei.health.industry:industry-service", version.ref = "huaweiHealth" }
+hwClient = { module = "com.huawei.health.industry:industry-client", version.ref = "huaweiHealth" }
+mpAndroid = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpAndroid" }
+pickerView = { module = "com.contrarywind:Android-PickerView", version.ref = "pickerView" }
+scanplus = { module = "com.huawei.hms:scanplus", version.ref = "scanplus" }
+swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
+wechatSdkAndroidWithoutMta = { module = "com.tencent.mm.opensdk:wechat-sdk-android-without-mta", version.ref = "wechatSdkAndroidWithoutMta" }
+#测试
+junit = { module = "junit:junit", version.ref = "junit" }
+exJunit = { module = "androidx.test.ext:junit", version.ref = "extJunit" }
+espressoCore = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+workRuntimeKtx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
+zxingAndroidEmbedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
+firebaseFirestoreKtx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+
+[plugins]
