@@ -122,8 +122,6 @@ dependencies {
     implementation(libs.cameraExtensions)
     implementation(libs.core)
     implementation(libs.zxingAndroidEmbedded)
-    //云康宝体脂秤
-    implementation(libs.qnscalesdkx)
     implementation(libs.scanplus)
 
     kapt(libs.rxhttpCompiler)

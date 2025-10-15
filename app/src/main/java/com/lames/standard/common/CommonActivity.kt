@@ -18,6 +18,7 @@ import com.hjq.permissions.XXPermissions
 import com.lames.standard.R
 import com.lames.standard.common.Constants.Project.EMPTY_STR
 import com.lames.standard.dialog.AlertDialogFragment
+import com.lames.standard.dialog.LoadingDialogFragment
 import com.lames.standard.mmkv.AppConfigMMKV
 import com.lames.standard.tools.forString
 import com.lames.standard.tools.onClick
@@ -28,15 +29,7 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
 
     lateinit var binding: T
 
-    private val progressDialog by lazy {
-        val view = View.inflate(this, R.layout.dialog_loading_progress, null)
-        val dialog = Dialog(this, R.style.LoadingDialogTheme)
-        dialog.setContentView(view)
-        dialog.setCanceledOnTouchOutside(false)
-        //dialog.setOnDismissListener(this)
-        dialog.window?.attributes?.gravity = Gravity.CENTER
-        return@lazy dialog
-    }
+    private var loadingDialog: LoadingDialogFragment? = null
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
@@ -92,10 +85,15 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
     }
 
     fun showProgressDialog(content: String = EMPTY_STR) {
-        val loadingStr = progressDialog.findViewById<TextView>(R.id.loadingStr)
-        loadingStr.isVisible = content.isNotEmpty()
-        loadingStr.text = content
-        progressDialog.show()
+        if (loadingDialog == null) {
+            loadingDialog = LoadingDialogFragment.newInstance(content)
+            loadingDialog?.show(supportFragmentManager, "loading")
+        } else {
+            loadingDialog?.updateMessage(content)
+            if (!loadingDialog!!.isAdded) {
+                loadingDialog?.show(supportFragmentManager, "loading")
+            }
+        }
     }
 
     fun showProgressDialog(@StringRes content: Int) {
@@ -103,7 +101,8 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
     }
 
     fun dismissProgressDialog() {
-        if (progressDialog.isShowing) progressDialog.dismiss()
+        loadingDialog?.dismissAllowingStateLoss()
+        loadingDialog = null
     }
 
     protected inline fun <reified T : CommonDialogFragment<*>> showDialogFg(
