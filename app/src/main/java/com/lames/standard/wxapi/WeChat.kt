@@ -4,8 +4,10 @@ import com.lames.standard.R
 import com.lames.standard.common.CommonApp
 import com.lames.standard.tools.showErrorToast
 import com.tencent.mm.opensdk.constants.Build
+import com.tencent.mm.opensdk.modelbase.BaseReq
 import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram
 import com.tencent.mm.opensdk.modelbiz.WXOpenCustomerServiceChat
+import com.tencent.mm.opensdk.modelmsg.SendAuth
 import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 
@@ -13,7 +15,7 @@ object WeChat {
 
     private const val APP_ID = ""
 
-    private val iwxApi by lazy { WXAPIFactory.createWXAPI(CommonApp.obtain(), APP_ID, true) }
+    val iwxApi by lazy { WXAPIFactory.createWXAPI(CommonApp.obtain(), APP_ID, true) }
 
     private fun sendReqAfterInstall(block: IWXAPI.() -> Unit) {
         if (!iwxApi.isWXAppInstalled) {
@@ -21,6 +23,19 @@ object WeChat {
             return
         }
         block.invoke(iwxApi)
+    }
+
+    fun sendWeChatLoginRep() {
+        sendReqAfterInstall {
+            val req = SendAuth.Req().also { it.scope = "snsapi_userinfo" }
+            iwxApi.sendReq(req)
+        }
+    }
+
+    fun sendPayRep(req: BaseReq) {
+        sendReqAfterInstall {
+            sendReq(req)
+        }
     }
 
     fun toWeChatOfficial(corpId: String, url: String) = sendReqAfterInstall {

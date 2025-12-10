@@ -45,6 +45,7 @@ class Api {
         const val UPDATE_PERSONAL_INFO = ""                           //更新个人健康信息
         const val GET_BASIC_BODY_INFO = ""                               //获取个人身体指标信息
         const val RESET_PASSWORD = ""                                   //重置密码
+        const val REGISTER = ""                                   //重置密码
     }
 
 
