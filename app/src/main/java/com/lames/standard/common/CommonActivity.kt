@@ -1,25 +1,20 @@
 package com.lames.standard.common
 
-import android.app.Dialog
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.viewbinding.ViewBinding
 import com.hjq.permissions.XXPermissions
 import com.lames.standard.R
 import com.lames.standard.common.Constants.Project.EMPTY_STR
 import com.lames.standard.dialog.AlertDialogFragment
-import com.lames.standard.dialog.LoadingDialogFragment
-import com.lames.standard.mmkv.AppConfigMMKV
 import com.lames.standard.tools.forString
 import com.lames.standard.tools.onClick
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -29,7 +24,7 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
 
     lateinit var binding: T
 
-    private var loadingDialog: LoadingDialogFragment? = null
+    protected var loadingDialog = DialogLoadingController(this)
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
@@ -40,7 +35,7 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(AppConfigMMKV.appThemeResId)
+        //setTheme(AppConfigMMKV.appThemeResId)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setTransparentStatusBar(true)
         binding = getViewBinding()
@@ -85,15 +80,7 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
     }
 
     fun showProgressDialog(content: String = EMPTY_STR) {
-        if (loadingDialog == null) {
-            loadingDialog = LoadingDialogFragment.newInstance(content)
-            loadingDialog?.show(supportFragmentManager, "loading")
-        } else {
-            loadingDialog?.updateMessage(content)
-            if (!loadingDialog!!.isAdded) {
-                loadingDialog?.show(supportFragmentManager, "loading")
-            }
-        }
+        loadingDialog.show(content)
     }
 
     fun showProgressDialog(@StringRes content: Int) {
@@ -101,8 +88,7 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
     }
 
     fun dismissProgressDialog() {
-        loadingDialog?.dismissAllowingStateLoss()
-        loadingDialog = null
+        loadingDialog.dismiss()
     }
 
     protected inline fun <reified T : CommonDialogFragment<*>> showDialogFg(

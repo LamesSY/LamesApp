@@ -10,6 +10,7 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.lames.standard.R
 import com.lames.standard.tools.onClick
@@ -27,6 +28,8 @@ abstract class CommonFragment<T : ViewBinding> : Fragment() {
     protected val binding: T get() = _binding!!
 
     protected val parentActivity: CommonActivity<*> by lazy { requireActivity() as CommonActivity<*> }
+
+    protected val lifecycleScope get() = viewLifecycleOwner.lifecycleScope
 
     override fun onCreateView(
         inflater: LayoutInflater,

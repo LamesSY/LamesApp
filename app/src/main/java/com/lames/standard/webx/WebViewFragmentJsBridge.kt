@@ -149,7 +149,7 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
     private fun saveBitmap(picName: String, bitmap: Bitmap) {
         val picturePath =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath
-        val path = picturePath + File.separator + forString(R.string.app_name)
+        val path = picturePath + File.separator + forString(R.string.app_main_name)
         File(path).mkdir()
         val fileName = picName + System.currentTimeMillis() + ".png"
         val file = File(path, fileName)
@@ -176,7 +176,7 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
             put(MediaStore.Images.Media.MIME_TYPE, "image/png")
             put(
                 MediaStore.Images.Media.RELATIVE_PATH,
-                Environment.DIRECTORY_PICTURES + File.separator + forString(R.string.app_name)
+                Environment.DIRECTORY_PICTURES + File.separator + forString(R.string.app_main_name)
             )
         }
         val saveUri = fg.requireContext().contentResolver.insert(

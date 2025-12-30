@@ -44,20 +44,5 @@ fun LifecycleCoroutineScope.execute(
 }
 
 fun LifecycleCoroutineScope.launchX(block: suspend CoroutineScope.() -> Unit): Job {
-    return launch {
-        try {
-            block()
-        } catch (e: Throwable) {
-            if (e is SessionExpiredException) {
-                showErrorToast(e.errorMsg)
-                e.printStackTrace()
-                LogKit.e(javaClass.simpleName, e.errorMsg, true)
-                CommonApp.obtain<App>().onSignOut()
-                return@launch
-            }
-            //不提示CancellationException错误，但仍需打印在log中
-            if (isActive) showErrorToast(e.errorMsg)
-            e.printStackTrace()
-        }
-    }
+    return execute(block)
 }

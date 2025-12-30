@@ -99,3 +99,12 @@ fun String?.isMail(): Boolean {
     }
     return flag
 }
+
+fun String.appendParams(params: Map<String, Any?>): String {
+    var url = this
+    params.toList().forEachIndexed { i, pair ->
+        val pairStr = "${pair.first}=${pair.second}"
+        url += if (i == 0) "?$pairStr" else "&$pairStr"
+    }
+    return url
+}

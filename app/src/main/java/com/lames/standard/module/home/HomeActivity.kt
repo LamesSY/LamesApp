@@ -30,7 +30,7 @@ class HomeActivity : CommonActivity<ActivityHomeBinding>(), TabLayout.OnTabSelec
             val diff = now - callbackTime
             callbackTime = now
             if (diff >= 2000) {
-                ToastKit.show("${forString(R.string.quit_if_again)}${forString(R.string.app_name)}")
+                ToastKit.show("${forString(R.string.quit_if_again)}${forString(R.string.app_main_name)}")
             } else {
                 callback.isEnabled = false
                 onBackPressedDispatcher.onBackPressed()

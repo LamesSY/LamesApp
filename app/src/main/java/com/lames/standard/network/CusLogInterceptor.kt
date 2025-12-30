@@ -3,6 +3,7 @@ package com.lames.standard.network
 import com.lames.standard.event.EventDict
 import com.lames.standard.event.LogEventKit
 import okhttp3.Interceptor
+import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody
 import okio.Buffer
@@ -20,16 +21,39 @@ class CusLogInterceptor : Interceptor {
         val response = chain.proceed(request)
         if (request.url.encodedPath.contains(Api.Event.UPLOAD_EVENTS, true)) return response
 
-        val responseStr =
-            runCatching { response2Str(response) }.getOrDefault("No Or Error Response Body")
+        val requestBody = runCatching { getRequestBodyString(request) }.getOrDefault("No Or Error Response")
+        val responseStr = runCatching { response2Str(response) }.getOrDefault("No Or Error Response")
         LogEventKit.obtain().logEvent(
             EventDict.api_log, mapOf(
-                EventDict.opvs1 to "url:${request.url} requestBodyStr: $responseStr",
-                EventDict.opvs2 to if (response.code == 200) "200" else "$responseStr",
-                EventDict.opvd1 to response.code,
+                EventDict.opvs1 to request.url,
+                EventDict.opvs2 to responseStr,
+                EventDict.opvs3 to requestBody,
             )
         )
         return response
+    }
+
+    private fun getRequestBodyString(request: Request): String {
+        val body = request.body ?: return ""
+        val contentType = body.contentType()?.toString()?.lowercase() ?: ""
+
+        return when {
+            contentType.contains("multipart") || contentType.contains("octet-stream") -> {
+                "Binary or Multipart Body Omitted"
+            }
+
+            else -> {
+                try {
+                    val buffer = Buffer()
+                    body.writeTo(buffer)
+                    val charset = body.contentType()?.charset(UTF_8) ?: UTF_8
+                    val bodyStr = buffer.readString(charset)
+                    bodyStr.take(30000)
+                } catch (e: Exception) {
+                    "Error reading body: ${e.message}"
+                }
+            }
+        }
     }
 
     @Throws(IOException::class)

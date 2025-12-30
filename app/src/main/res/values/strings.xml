@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lamse App</string>
+    <string name="app_main_name">Lamse App</string>
     <string name="cancel">取消</string>
     <string name="confirm">确认</string>
     <string name="hint_plz_input">请输入…</string>
