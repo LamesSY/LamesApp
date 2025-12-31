@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -13,7 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.lames.standard.R
-import com.lames.standard.tools.onClick
+import com.lames.standard.view.LmAppBar
 import com.lames.standard.webx.WebViewXActivity
 
 abstract class CommonFragment<T : ViewBinding> : Fragment() {
@@ -29,12 +27,12 @@ abstract class CommonFragment<T : ViewBinding> : Fragment() {
 
     protected val parentActivity: CommonActivity<*> by lazy { requireActivity() as CommonActivity<*> }
 
-    protected val lifecycleScope get() = viewLifecycleOwner.lifecycleScope
+    protected val viewLifecycleScope get() = viewLifecycleOwner.lifecycleScope
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = getViewBinding(inflater, container)
         containerId = container?.id ?: -1
@@ -45,15 +43,16 @@ abstract class CommonFragment<T : ViewBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialization()
+        getLmAppBar()?.let { appBar ->
+            appBar.onAppBackClick = { dispatcher.onBackPressed() }
+        }
         bindEvent()
         doExtra()
-        binding.root.findViewById<ImageView>(R.id.appBack)?.onClick {
-            dispatcher.onBackPressed()
-        }
     }
 
     protected abstract fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): T
 
+    protected open fun getLmAppBar() = binding.root.findViewById<LmAppBar>(R.id.lmAppBar)
     protected open fun initialization() {}
     protected open fun bindEvent() {}
     protected open fun doExtra() {}
@@ -81,11 +80,11 @@ abstract class CommonFragment<T : ViewBinding> : Fragment() {
     }
 
     public fun setAppBarTitle(str: String) {
-        binding.root.findViewById<TextView>(R.id.appTitle)?.text = str
+        getLmAppBar()?.setTitle(str)
     }
 
     public fun setAppBarTitle(@StringRes content: Int) {
-        binding.root.findViewById<TextView>(R.id.appTitle)?.setText(content)
+        getLmAppBar()?.setTitle(content)
     }
 
     protected fun showProgressDialog(content: String = Constants.Project.EMPTY_STR) {
@@ -102,7 +101,7 @@ abstract class CommonFragment<T : ViewBinding> : Fragment() {
 
     inline fun <reified T : CommonDialogFragment<*>> showDialogFg(
         tag: String? = null,
-        initDialog: ((T) -> Unit) = {}
+        initDialog: ((T) -> Unit) = {},
     ) {
         tag?.let { if (parentFragmentManager.findFragmentByTag(it) != null) return }
         val d = T::class.java.getDeclaredConstructor().newInstance()

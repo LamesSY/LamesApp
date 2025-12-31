@@ -27,6 +27,7 @@ import com.lames.standard.mmkv.UserMMKV
 import com.lames.standard.tools.AppKit
 import com.lames.standard.tools.LogKit
 import com.lames.standard.tools.forString
+import com.lames.standard.tools.getStatusBarDpHeight
 import com.lames.standard.tools.getVolumePercentage
 import com.lames.standard.tools.parseToJson
 import com.lames.standard.tools.showErrorToast
@@ -50,6 +51,8 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
         val user = UserMMKV.user
         val params = hashMapOf(
             "token" to (user?.token ?: EMPTY_STR),
+            "statusBarHeight" to getStatusBarDpHeight(),
+            "navigationHeight" to getStatusBarDpHeight() + 40,
         )
         return parseToJson(params)
     }
@@ -70,7 +73,6 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
     @JavascriptInterface
     open fun openPage(url: String, title: String?, jsonParams: String?) {
         LogKit.d(javaClass.simpleName, "$jsonParams")
-
     }
 
     @JavascriptInterface

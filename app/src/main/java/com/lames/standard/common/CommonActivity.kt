@@ -6,8 +6,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
@@ -16,7 +14,7 @@ import com.lames.standard.R
 import com.lames.standard.common.Constants.Project.EMPTY_STR
 import com.lames.standard.dialog.AlertDialogFragment
 import com.lames.standard.tools.forString
-import com.lames.standard.tools.onClick
+import com.lames.standard.view.LmAppBar
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
@@ -41,15 +39,16 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
         binding = getViewBinding()
         setContentView(binding.root)
         initialization()
+        getLmAppBar()?.let { appBar ->
+            appBar.onAppBackClick = { onBackPressedDispatcher.onBackPressed() }
+        }
         bindEvent()
         doExtra()
-        binding.root.findViewById<ImageView>(R.id.appBack)?.onClick {
-            onBackPressedDispatcher.onBackPressed()
-        }
     }
 
     protected abstract fun getViewBinding(): T
 
+    protected open fun getLmAppBar() = binding.root.findViewById<LmAppBar>(R.id.lmAppBar)
     protected open fun initialization() {}
     protected open fun bindEvent() {}
     protected open fun doExtra() {}
@@ -72,11 +71,11 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
     }
 
     protected fun setAppBarTitle(str: String) {
-        binding.root.findViewById<TextView>(R.id.appTitle)?.text = str
+        getLmAppBar()?.setTitle(str)
     }
 
     protected fun setAppBarTitle(@StringRes content: Int) {
-        binding.root.findViewById<TextView>(R.id.appTitle)?.setText(content)
+        getLmAppBar()?.setTitle(content)
     }
 
     fun showProgressDialog(content: String = EMPTY_STR) {
@@ -93,7 +92,7 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
 
     protected inline fun <reified T : CommonDialogFragment<*>> showDialogFg(
         tag: String? = null,
-        initDialog: ((T) -> Unit) = {}
+        initDialog: ((T) -> Unit) = {},
     ) {
         tag?.let { if (supportFragmentManager.findFragmentByTag(it) != null) return }
         val d = T::class.java.getDeclaredConstructor().newInstance()

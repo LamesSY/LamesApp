@@ -115,6 +115,10 @@
             android:name=".module.login.ForgetPwdActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".webx.WebViewActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".push.PushMsgService"

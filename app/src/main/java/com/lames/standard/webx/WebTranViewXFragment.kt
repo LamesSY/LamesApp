@@ -15,6 +15,7 @@ import com.lames.standard.tools.dp2px
 import com.lames.standard.tools.forColor
 import com.lames.standard.tools.getStatusBarHeight
 
+@Deprecated("use activity")
 class WebTranViewXFragment : AbsWebViewFragment<FragmentWebTranViewXBinding>() {
 
     private lateinit var callback: OnBackPressedCallback

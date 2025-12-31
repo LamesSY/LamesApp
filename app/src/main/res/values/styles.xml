@@ -74,4 +74,8 @@
         <attr name="cursorColor" format="color|reference" />
     </declare-styleable>
 
+    <declare-styleable name="LmAppBar">
+        <attr name="barStyle" format="integer" />
+    </declare-styleable>
+
 </resources>

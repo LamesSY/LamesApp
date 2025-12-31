@@ -12,6 +12,7 @@ import com.lames.standard.databinding.FragmentWebViewXBinding
 import com.lames.standard.mmkv.AppConfigMMKV
 import com.lames.standard.tools.forColor
 
+@Deprecated("use activity")
 class WebViewXFragment : AbsWebViewFragment<FragmentWebViewXBinding>() {
 
     private lateinit var callback: OnBackPressedCallback
