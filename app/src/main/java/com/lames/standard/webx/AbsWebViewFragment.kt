@@ -2,7 +2,7 @@ package com.lames.standard.webx
 
 import android.net.Uri
 import android.webkit.ValueCallback
-import android.webkit.WebChromeClient.FileChooserParams
+import android.webkit.WebChromeClient.*
 import android.webkit.WebView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,7 +16,7 @@ import com.lames.standard.network.launchX
 import com.lames.standard.tools.forString
 import com.lames.standard.tools.showErrorToast
 
-abstract class AbsWebViewFragment<T : ViewBinding> : CommonFragment<T>() {
+abstract class AbsWebViewFragment<T : ViewBinding> : CommonFragment<T>(), WebHost {
 
     private var filePathCallback: ValueCallback<Array<Uri>>? = null
 
@@ -49,7 +49,7 @@ abstract class AbsWebViewFragment<T : ViewBinding> : CommonFragment<T>() {
     fun onAbsShowFileChooser(
         webView: WebView?,
         filePathCallback: ValueCallback<Array<Uri>>?,
-        fileChooserParams: FileChooserParams?
+        fileChooserParams: FileChooserParams?,
     ): Boolean {
         this.filePathCallback = filePathCallback
         val acceptTypes = fileChooserParams?.acceptTypes?.filter { it.isNotEmpty() }
@@ -89,4 +89,15 @@ abstract class AbsWebViewFragment<T : ViewBinding> : CommonFragment<T>() {
         }
     }
 
+    override fun getHostContext() = requireContext()
+    override fun getHostLifecycleScop() = viewLifecycleScope
+    override fun setBarTitle(title: String) {
+        setAppBarTitle(title)
+    }
+
+    override fun finishPage() {
+        dispatcher.onBackPressed()
+    }
+
+    override fun getHostActivity() = parentActivity
 }

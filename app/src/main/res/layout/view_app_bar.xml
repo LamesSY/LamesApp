@@ -42,6 +42,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/appClose"
+        android:layout_width="55dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/ripple_effect"
+        android:backgroundTint="@color/transparent"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_linear_close"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/appBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/appRightIcon"
         android:layout_width="55dp"
         android:layout_height="match_parent"

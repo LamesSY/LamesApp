@@ -76,6 +76,11 @@
 
     <declare-styleable name="LmAppBar">
         <attr name="barStyle" format="integer" />
+        <attr name="showClose" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="PageStateLayout">
+        <attr name="showImg" format="boolean" />
     </declare-styleable>
 
 </resources>

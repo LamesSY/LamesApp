@@ -12,39 +12,31 @@ import android.provider.MediaStore
 import android.util.Base64
 import android.webkit.JavascriptInterface
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.findFragment
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.lames.standard.App
 import com.lames.standard.R
-import com.lames.standard.common.CommonActivity
 import com.lames.standard.common.CommonApp
-import com.lames.standard.common.CommonFragment
 import com.lames.standard.common.Constants.Project.EMPTY_STR
 import com.lames.standard.dialog.AlertDialogFragment
 import com.lames.standard.entity.NativeNavigateParams
 import com.lames.standard.mmkv.UserMMKV
-import com.lames.standard.tools.AppKit
 import com.lames.standard.tools.LogKit
 import com.lames.standard.tools.forString
 import com.lames.standard.tools.getStatusBarDpHeight
 import com.lames.standard.tools.getVolumePercentage
 import com.lames.standard.tools.parseToJson
+import com.lames.standard.tools.showDialogFragment
 import com.lames.standard.tools.showErrorToast
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 
-open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
-
-    private val fg: CommonFragment<*>
-        get() {
-            val findFragment = runCatching { webView.findFragment<CommonFragment<*>>() }.getOrNull()
-            if (findFragment != null) return findFragment
-            val topAty = AppKit.obtain().topActivity() as CommonActivity<*>
-            return topAty.supportFragmentManager.fragments[0] as CommonFragment<*>
-        }
+open class WebViewJsBridge(
+    private val webView: BaseWebView,
+    private val host: WebHost,
+) {
 
     @JavascriptInterface
     fun getTokenInfo(): String {
@@ -59,20 +51,15 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
 
     @JavascriptInterface
     fun setTitle(title: String) {
-        fg.requireActivity().runOnUiThread { fg.setAppBarTitle(title) }
+        host.setBarTitle(title)
     }
 
     @JavascriptInterface
-    open fun openPageContainer(url: String, title: String?, jsonParams: String?) {
+    fun openPage(url: String, title: String?, jsonParams: String?) {
         LogKit.d(javaClass.simpleName, "$jsonParams")
         val jsonObject = runCatching { JSONObject(jsonParams!!) }.getOrNull()
         val titleBarStyle = jsonObject?.optInt("titleBarStyle") ?: 0
-        WebViewXActivity.start(fg.requireActivity(), url, title, titleBarStyle)
-    }
-
-    @JavascriptInterface
-    open fun openPage(url: String, title: String?, jsonParams: String?) {
-        LogKit.d(javaClass.simpleName, "$jsonParams")
+        WebViewActivity.start(host.getHostContext(), url, title, titleBarStyle)
     }
 
     @JavascriptInterface
@@ -99,10 +86,7 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
     @JavascriptInterface
     fun pop(closeType: Int) {
         LogKit.d(javaClass.simpleName, "pop(${closeType})")
-        fg.requireActivity().runOnUiThread {
-            if (closeType == 3) fg.requireActivity().finish()
-            else fg.dispatcher.onBackPressed()
-        }
+        host.finishPage()
     }
 
     @JavascriptInterface
@@ -114,7 +98,7 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 saveBitmapQ(picName, bitmap)
             } else requestSaveBitmap(picName, bitmap)
-            fg.requireActivity().runOnUiThread { webView.loadUrl("javascript:${endMethod}") }
+            host.getHostActivity().runOnUiThread { webView.evaluateJs(endMethod, "") }
         }
     }
 
@@ -133,17 +117,17 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
 
     private fun requestSaveBitmap(picName: String, bitmap: Bitmap) {
         val hasPermission =
-            XXPermissions.isGranted(fg.requireContext(), Permission.WRITE_EXTERNAL_STORAGE)
+            XXPermissions.isGranted(host.getHostContext(), Permission.WRITE_EXTERNAL_STORAGE)
         if (hasPermission) saveBitmap(picName, bitmap)
-        else fg.showDialogFg<AlertDialogFragment> {
+        else showDialogFragment<AlertDialogFragment>(host.getHostActivity().supportFragmentManager) {
             it.title = forString(R.string.alert_tip_title)
             it.content = "为了将图片保存到图库中，将向您申请存储读写权限"
             it.onConfirm = {
-                XXPermissions.with(fg.requireContext()).unchecked()
+                XXPermissions.with(host.getHostContext()).unchecked()
                     .permission(Permission.WRITE_EXTERNAL_STORAGE).request { _, allGranted ->
-                    if (allGranted.not()) showErrorToast(R.string.lack_of_needed_permission)
-                    else saveBitmap(picName, bitmap)
-                }
+                        if (allGranted.not()) showErrorToast(R.string.lack_of_needed_permission)
+                        else saveBitmap(picName, bitmap)
+                    }
             }
         }
     }
@@ -181,7 +165,7 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
                 Environment.DIRECTORY_PICTURES + File.separator + forString(R.string.app_main_name)
             )
         }
-        val saveUri = fg.requireContext().contentResolver.insert(
+        val saveUri = host.getHostContext().contentResolver.insert(
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             contentValues
         )
@@ -189,8 +173,7 @@ open class WebViewFragmentJsBridge(private val webView: BaseWebView) {
             showErrorToast(R.string.save_failure)
             return
         }
-        val outputStream: OutputStream? =
-            fg.requireContext().contentResolver.openOutputStream(saveUri)
+        val outputStream: OutputStream? = host.getHostContext().contentResolver.openOutputStream(saveUri)
         if (outputStream == null) {
             showErrorToast(R.string.save_failure)
             return

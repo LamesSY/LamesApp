@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.lames.standard.R
 import com.lames.standard.view.LmAppBar
-import com.lames.standard.webx.WebViewXActivity
 
 abstract class CommonFragment<T : ViewBinding> : Fragment() {
 
@@ -67,9 +65,9 @@ abstract class CommonFragment<T : ViewBinding> : Fragment() {
             setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
             if (addToBackStack) add(containerId, T::class.java, args)
             else replace(containerId, T::class.java, args)
-            if (this@CommonFragment.requireActivity() is WebViewXActivity) {
+            /*if (this@CommonFragment.requireActivity() is WebViewXActivity) {
                 setMaxLifecycle(this@CommonFragment, Lifecycle.State.STARTED)
-            }
+            }*/
             if (addToBackStack) addToBackStack(tag)
         }
     }

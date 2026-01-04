@@ -28,7 +28,6 @@ import com.lames.standard.tools.onClick
 import com.lames.standard.tools.readTextFileFromAssets
 import com.lames.standard.tools.showErrorToast
 import com.lames.standard.tools.showSuccessToast
-import com.lames.standard.webx.WebViewXActivity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import rxhttp.tryAwait

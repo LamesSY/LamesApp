@@ -16,7 +16,7 @@ import com.lames.standard.network.launchX
 import com.lames.standard.tools.forString
 import com.lames.standard.tools.showErrorToast
 
-abstract class AbsWebViewActivity<T : ViewBinding> : CommonActivity<T>() {
+abstract class AbsWebViewActivity<T : ViewBinding> : CommonActivity<T>(), WebHost {
 
     private var filePathCallback: ValueCallback<Array<Uri>>? = null
 
@@ -87,4 +87,16 @@ abstract class AbsWebViewActivity<T : ViewBinding> : CommonActivity<T>() {
             else -> acceptTypes.first() // 取第一个有效类型
         }
     }
+
+    override fun getHostContext() = this
+    override fun getHostLifecycleScop() = lifecycleScope
+    override fun setBarTitle(title: String) {
+        setAppBarTitle(title)
+    }
+
+    override fun finishPage() {
+        finish()
+    }
+
+    override fun getHostActivity() = this
 }

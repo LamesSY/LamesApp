@@ -43,7 +43,10 @@ open class BaseWebView @JvmOverloads constructor(
             setSupportZoom(false)
             textZoom = AppConfigMMKV.webViewTextZoom
         }
-        this.addJavascriptInterface(WebViewFragmentJsBridge(this), "basic")
+    }
+
+    fun addJsInterface(webViewJsBridge: WebViewJsBridge) {
+        this.addJavascriptInterface(webViewJsBridge, "basic")
     }
 
     fun loadRefresh(url: String) {
@@ -177,5 +180,10 @@ open class BaseWebView @JvmOverloads constructor(
 
     fun setCustomWebChromeClient(client: BaseWebChromeClient?) {
         super.setWebChromeClient(client)
+    }
+
+    fun evaluateJs(funName: String, msg: String) {
+        LogKit.d(javaClass.simpleName, "evaluateJs funName=$funName msg=$msg")
+        evaluateJavascript("javascript:${funName}('${msg}')") {}
     }
 }

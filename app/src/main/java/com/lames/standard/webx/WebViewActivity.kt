@@ -30,6 +30,7 @@ class WebViewActivity : AbsWebViewActivity<ActivityWebViewBinding>() {
             }
         }
         binding.appBarSpace.isVisible = wvAtyStyle.barStyle == 0
+        mWebView.addJsInterface(WebViewJsBridge(mWebView, this))
         mWebView.setLifecycleOwner(this)
         mWebView.settings.textZoom = AppConfigMMKV.webViewTextZoom
         binding.webViewContainer.addView(
@@ -50,7 +51,7 @@ class WebViewActivity : AbsWebViewActivity<ActivityWebViewBinding>() {
             webviewStyle.title = title ?: ""
             webviewStyle.barStyle = barStyle
 
-            val intent = Intent(context, WebViewXActivity::class.java)
+            val intent = Intent(context, WebViewActivity::class.java)
             intent.putExtra(Constants.Params.ARG1, url)
             intent.putExtra(Constants.Params.ARG2, webviewStyle)
             context.startActivity(intent)
