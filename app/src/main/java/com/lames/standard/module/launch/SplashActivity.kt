@@ -10,6 +10,7 @@ import com.lames.standard.common.CommonApp
 import com.lames.standard.databinding.ActivitySplashBinding
 import com.lames.standard.mmkv.AppConfigMMKV
 import com.lames.standard.mmkv.UserMMKV
+import com.lames.standard.module.TestAty
 import com.lames.standard.module.home.HomeActivity
 import com.lames.standard.module.login.LoginActivity
 import com.lames.standard.module.login.UserInitActivity
@@ -36,6 +37,7 @@ class SplashActivity : CommonActivity<ActivitySplashBinding>() {
                 }
             }
             AppConfigMMKV.adaptAppVersion = version
+            TestAty.start(this@SplashActivity)
             return@launchX
             val user = UserMMKV.user
             if (user == null) {

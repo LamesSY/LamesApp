@@ -35,6 +35,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        compose = true
     }
 
     buildTypes {
@@ -57,6 +58,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -123,6 +127,16 @@ dependencies {
     implementation(libs.core)
     implementation(libs.zxingAndroidEmbedded)
     implementation(libs.scanplus)
+
+    //compose⬇
+    implementation(platform(libs.compose.bom))
+    //implementation(libs.ui)
+    //implementation(libs.uiGraphics)
+    implementation(libs.uiToolingPreview)
+    implementation(libs.material3)
+    implementation(libs.activity.compose)
+
+    //compose⬆
 
     kapt(libs.rxhttpCompiler)
     kapt(libs.glideCompiler)

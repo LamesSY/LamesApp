@@ -115,6 +115,10 @@
             android:name=".webx.WebViewActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.TestAty"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".push.PushMsgService"
