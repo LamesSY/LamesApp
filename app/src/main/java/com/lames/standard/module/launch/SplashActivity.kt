@@ -9,11 +9,6 @@ import com.lames.standard.common.CommonActivity
 import com.lames.standard.common.CommonApp
 import com.lames.standard.databinding.ActivitySplashBinding
 import com.lames.standard.mmkv.AppConfigMMKV
-import com.lames.standard.mmkv.UserMMKV
-import com.lames.standard.module.TestAty
-import com.lames.standard.module.home.HomeActivity
-import com.lames.standard.module.login.LoginActivity
-import com.lames.standard.module.login.UserInitActivity
 import com.lames.standard.network.launchX
 import com.lames.standard.tools.versionCode
 import kotlinx.coroutines.Dispatchers
@@ -37,17 +32,8 @@ class SplashActivity : CommonActivity<ActivitySplashBinding>() {
                 }
             }
             AppConfigMMKV.adaptAppVersion = version
-            TestAty.start(this@SplashActivity)
-            return@launchX
-            val user = UserMMKV.user
-            if (user == null) {
-                LoginActivity.start(this@SplashActivity)
-            } else if (user.isInfoFinish.not()) {
-                UserInitActivity.start(this@SplashActivity)
-            } else {
-                HomeActivity.start(this@SplashActivity)
-            }
-            finish()
+
+            //finish()
         }
     }
 

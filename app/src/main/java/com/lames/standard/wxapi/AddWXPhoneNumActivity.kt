@@ -10,8 +10,6 @@ import com.lames.standard.databinding.ActivityAddWxPhoneNumBinding
 import com.lames.standard.entity.User
 import com.lames.standard.entity.UserWXInfo
 import com.lames.standard.mmkv.UserMMKV
-import com.lames.standard.module.home.HomeActivity
-import com.lames.standard.module.login.UserInitActivity
 import com.lames.standard.network.Api
 import com.lames.standard.network.errorMsg
 import com.lames.standard.network.execute
@@ -61,11 +59,11 @@ class AddWXPhoneNumActivity : CommonActivity<ActivityAddWxPhoneNumBinding>() {
                 params["wxOpenId"] = userWXInfo.openId
                 val user = postForData<User>(Api.Person.REGISTER, params)
                 UserMMKV.user = user
-                if (user.isInfoFinish.not()) {
+                /*if (user.isInfoFinish.not()) {
                     UserInitActivity.start(this@AddWXPhoneNumActivity)
                 } else {
                     HomeActivity.start(this@AddWXPhoneNumActivity)
-                }
+                }*/
                 finish()
             }, null, { showProgressDialog(R.string.operating) }, { dismissProgressDialog() })
         }

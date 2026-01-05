@@ -1,13 +1,11 @@
 package com.lames.standard.wxapi
 
 import android.content.Intent
-import androidx.activity.addCallback
 import androidx.lifecycle.lifecycleScope
 import com.lames.standard.R
 import com.lames.standard.common.CommonActivity
 import com.lames.standard.databinding.ActivityContainerBinding
 import com.lames.standard.mmkv.UserMMKV
-import com.lames.standard.module.login.LoginActivity
 import com.lames.standard.network.errorMsg
 import com.lames.standard.network.execute
 import com.lames.standard.tools.showErrorToast
@@ -28,9 +26,9 @@ class WXEntryActivity : CommonActivity<ActivityContainerBinding>(), IWXAPIEventH
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        onBackPressedDispatcher.addCallback {
-            LoginActivity.start(this@WXEntryActivity)
-        }
+        /*onBackPressedDispatcher.addCallback {
+
+        }*/
     }
 
     override fun onNewIntent(intent: Intent) {

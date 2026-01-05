@@ -96,19 +96,7 @@
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.login.LoginActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".module.login.UserInitActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".camera.ScanActivity"
-            android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".module.login.ForgetPwdActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
