@@ -13,7 +13,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.lames.standard.BuildConfig
-import com.lames.standard.mmkv.AppConfigMMKV
 import com.lames.standard.network.Api
 import com.lames.standard.tools.LogKit
 import kotlin.math.abs
@@ -41,7 +40,6 @@ open class BaseWebView @JvmOverloads constructor(
             mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             setGeolocationEnabled(true)
             setSupportZoom(false)
-            textZoom = AppConfigMMKV.webViewTextZoom
         }
     }
 

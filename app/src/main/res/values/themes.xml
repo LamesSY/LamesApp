@@ -69,27 +69,7 @@
         <item name="divider_1">@color/divider_1</item>
         <item name="divider_2">@color/divider_2</item>
         <item name="ripple_color">@color/light_ripple_color</item>
-
-        <item name="tsp14">14sp</item>
-        <item name="tsp16">16sp</item>
-        <item name="tsp18">18sp</item>
-        <item name="tsp20">20sp</item>
     </style>
-
-    <style name="AppThemeScale1" parent="AppTheme">
-        <item name="tsp14">16sp</item>
-        <item name="tsp16">18sp</item>
-        <item name="tsp18">20sp</item>
-        <item name="tsp20">22sp</item>
-    </style>
-
-    <style name="AppThemeScale2" parent="AppTheme">
-        <item name="tsp14">18sp</item>
-        <item name="tsp16">20sp</item>
-        <item name="tsp18">22sp</item>
-        <item name="tsp20">24sp</item>
-    </style>
-
 
     <style name="DialogFragmentTheme" parent="Theme.MaterialComponents.Light.Dialog">
 

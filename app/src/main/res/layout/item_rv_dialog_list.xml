@@ -9,7 +9,7 @@
     android:paddingHorizontal="20dp"
     android:paddingVertical="15dp"
     android:textColor="?attr/text_1"
-    android:textSize="?attr/tsp16"
+    android:textSize="16sp"
     tools:text="@tools:sample/full_names">
 
 </TextView>

@@ -37,7 +37,7 @@
             android:padding="5dp"
             android:text="@string/cancel"
             android:textColor="@color/text_1_rev"
-            android:textSize="?attr/tsp16" />
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="0dp"
@@ -66,7 +66,7 @@
             android:padding="5dp"
             android:text="@string/confirm"
             android:textColor="@color/text_1_rev"
-            android:textSize="?attr/tsp16" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

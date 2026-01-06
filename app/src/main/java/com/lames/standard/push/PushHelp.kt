@@ -22,8 +22,8 @@ object PushHelp {
     fun initPush(app: Application) {
         val pushInitConfig = PushInitConfig.Builder()
             .application(app)
-            .appKey("335488663")
-            .appSecret("13398fc79ed44529a424ca1f270e8aa5")
+            .appKey("")
+            .appSecret("")
             .build()
         PushServiceFactory.init(pushInitConfig)
         if (BuildConfig.DEBUG) {

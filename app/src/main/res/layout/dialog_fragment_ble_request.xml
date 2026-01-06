@@ -15,7 +15,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/alert_tip_title"
         android:textColor="?attr/text_1"
-        android:textSize="?attr/tsp18"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_marginTop="15dp"
         android:text="@string/desc_request_ble_phone_permission"
         android:textColor="?attr/text_4"
-        android:textSize="?attr/tsp16" />
+        android:textSize="16sp" />
 
     <View
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:paddingVertical="15dp"
             android:text="@string/cancel"
             android:textColor="?attr/text_4"
-            android:textSize="?attr/tsp16"
+            android:textSize="16sp"
             app:cornerRadius="0dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -62,7 +62,7 @@
             android:layout_weight="1"
             android:paddingVertical="15dp"
             android:text="@string/confirm"
-            android:textSize="?attr/tsp16"
+            android:textSize="16sp"
             app:cornerRadius="0dp" />
 
     </LinearLayout>

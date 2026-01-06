@@ -9,7 +9,6 @@ import androidx.core.view.isVisible
 import com.lames.standard.common.Constants
 import com.lames.standard.databinding.ActivityWebViewBinding
 import com.lames.standard.entity.WebViewAtyStyle
-import com.lames.standard.mmkv.AppConfigMMKV
 
 class WebViewActivity : AbsWebViewActivity<ActivityWebViewBinding>() {
 
@@ -32,7 +31,6 @@ class WebViewActivity : AbsWebViewActivity<ActivityWebViewBinding>() {
         binding.appBarSpace.isVisible = wvAtyStyle.barStyle == 0
         mWebView.addJsInterface(WebViewJsBridge(mWebView, this))
         mWebView.setLifecycleOwner(this)
-        mWebView.settings.textZoom = AppConfigMMKV.webViewTextZoom
         binding.webViewContainer.addView(
             mWebView, RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,

@@ -35,7 +35,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textColor="@color/text_1_rev"
-            android:textSize="?attr/tsp14"
+            android:textSize="14sp"
             tools:text="验证码错误" />
     </LinearLayout>
 </FrameLayout>

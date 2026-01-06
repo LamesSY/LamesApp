@@ -18,7 +18,7 @@
         android:paddingHorizontal="5dp"
         android:paddingVertical="2dp"
         android:textColor="?attr/text_1_rev"
-        android:textSize="?attr/tsp14"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="v1.0.0" />
@@ -43,7 +43,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/title_new_version_content"
         android:textColor="?attr/text_1"
-        android:textSize="?attr/tsp18"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <TextView
@@ -53,7 +53,7 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="5dp"
         android:textColor="?attr/text_4"
-        android:textSize="?attr/tsp16"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/downloadLayout"
         app:layout_constraintTop_toBottomOf="@id/subtitle"
         tools:text="@tools:sample/lorem" />
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="?attr/text_1_rev"
-            android:textSize="?attr/tsp16"
+            android:textSize="16sp"
             tools:text="下载中80%" />
 
     </FrameLayout>

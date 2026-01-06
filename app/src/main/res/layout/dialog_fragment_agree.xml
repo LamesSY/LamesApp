@@ -15,7 +15,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/privacy_policy"
         android:textColor="?attr/text_1"
-        android:textSize="?attr/tsp18"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <ScrollView
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="?attr/text_3"
-            android:textSize="?attr/tsp14" />
+            android:textSize="14sp" />
 
     </ScrollView>
 
@@ -48,7 +48,7 @@
             android:paddingVertical="20dp"
             android:text="@string/reject_and_quit"
             android:textColor="?attr/text_4"
-            android:textSize="?attr/tsp14"
+            android:textSize="14sp"
             app:cornerRadius="0dp" />
 
         <View
@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:paddingVertical="20dp"
             android:text="@string/i_read_and_agree"
-            android:textSize="?attr/tsp14"
+            android:textSize="14sp"
             app:cornerRadius="0dp" />
 
     </LinearLayout>

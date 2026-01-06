@@ -8,22 +8,10 @@ import com.lames.standard.tools.parseToObject
 object UserMMKV {
 
     private var userJson by GlobalVar.obtain().userMMKV.string("key_user")
-    var user: User? = null
-        get() {
-            return if (field == null) try {
-                field = parseToObject<User>(userJson ?: return null)
-                field
-            } catch (e: Exception) {
-                null
-            } else field
-        }
-        set(value) {
-            userJson = if (value != null) parseToJson(value) else null
-            field = value
-        }
-
+    val user get() = runCatching { parseToObject<User>(userJson!!) }.getOrNull()
+    fun setUserInfo(user: User) = runCatching { userJson = parseToJson(user) }
 
     fun clear() {
-        user = null
+        userJson = null
     }
 }

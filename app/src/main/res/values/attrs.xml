@@ -23,11 +23,6 @@
     <attr name="divider_2" format="color|reference" />
     <attr name="ripple_color" format="color|reference" />
 
-    <attr name="tsp14" format="color|dimension" />
-    <attr name="tsp16" format="color|dimension" />
-    <attr name="tsp18" format="color|dimension" />
-    <attr name="tsp20" format="color|dimension" />
-
     <declare-styleable name="SwipeMenuLayout">
         <attr name="swipeEnable" format="boolean" />
         <attr name="ios" format="boolean" />

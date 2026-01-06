@@ -58,7 +58,7 @@ class AddWXPhoneNumActivity : CommonActivity<ActivityAddWxPhoneNumBinding>() {
                 params["unionid"] = userWXInfo.unionid
                 params["wxOpenId"] = userWXInfo.openId
                 val user = postForData<User>(Api.Person.REGISTER, params)
-                UserMMKV.user = user
+                UserMMKV.setUserInfo(user)
                 /*if (user.isInfoFinish.not()) {
                     UserInitActivity.start(this@AddWXPhoneNumActivity)
                 } else {
