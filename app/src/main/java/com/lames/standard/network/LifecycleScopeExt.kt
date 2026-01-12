@@ -21,24 +21,16 @@ fun LifecycleCoroutineScope.execute(
             onStart?.invoke()
             block()
         } catch (e: Throwable) {
+            LogKit.e(javaClass.simpleName, e.errorMsg, true)
+            e.printStackTrace()
             if (e is SessionExpiredException) {
                 showErrorToast(e.errorMsg)
-                e.printStackTrace()
                 CommonApp.obtain<App>().onSignOut()
                 return@launch
             }
-            if (onError == null) {
-                //不提示CancellationException错误，但仍需打印在log中
-                if (isActive) showErrorToast(e.errorMsg)
-                LogKit.e(javaClass.simpleName, e.errorMsg, true)
-                e.printStackTrace()
-            } else try {
-                onError.invoke(e)
-            } catch (e: Throwable) {
-                e.printStackTrace()
-            }
+            if (isActive) onError?.invoke(e) ?: showErrorToast(e.errorMsg)
         } finally {
-            onFinally?.invoke()
+            if (isActive) onFinally?.invoke()
         }
     }
 }
