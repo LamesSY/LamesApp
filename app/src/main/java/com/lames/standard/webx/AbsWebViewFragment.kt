@@ -18,6 +18,8 @@ import com.lames.standard.tools.showErrorToast
 
 abstract class AbsWebViewFragment<T : ViewBinding> : CommonFragment<T>(), WebHost {
 
+    abstract fun getWebView(): BaseWebView
+
     private var filePathCallback: ValueCallback<Array<Uri>>? = null
 
     private val multiplePickMedia =

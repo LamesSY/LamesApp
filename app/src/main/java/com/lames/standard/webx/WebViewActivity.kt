@@ -2,48 +2,30 @@ package com.lames.standard.webx
 
 import android.content.Context
 import android.content.Intent
-import android.widget.RelativeLayout
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
-import androidx.core.view.isVisible
+import androidx.core.os.bundleOf
+import com.lames.standard.common.CommonActivity
 import com.lames.standard.common.Constants
-import com.lames.standard.databinding.ActivityWebViewBinding
+import com.lames.standard.databinding.ActivityContainerBinding
 import com.lames.standard.entity.WebViewAtyStyle
+import com.lames.standard.tools.loadFirstFragment
 
-class WebViewActivity : AbsWebViewActivity<ActivityWebViewBinding>() {
+class WebViewActivity : CommonActivity<ActivityContainerBinding>() {
 
-    private lateinit var callback: OnBackPressedCallback
-    private val mWebView by lazy { WebViewPool.getInstance().getWebView(this) }
     private val url by lazy { intent.getStringExtra(Constants.Params.ARG1) ?: "" }
-    private val wvAtyStyle by lazy { intent.getParcelableExtra<WebViewAtyStyle>(Constants.Params.ARG2) ?: WebViewAtyStyle() }
+    private val wvAtyStyle by lazy { intent?.getParcelableExtra<WebViewAtyStyle>(Constants.Params.ARG2) ?: WebViewAtyStyle() }
 
-    override fun getViewBinding() = ActivityWebViewBinding.inflate(layoutInflater)
+    override fun getViewBinding() = ActivityContainerBinding.inflate(layoutInflater)
 
     override fun initialization() {
-        setAppBarTitle(wvAtyStyle.title)
-        callback = onBackPressedDispatcher.addCallback(this) {
-            if (mWebView.canGoBack()) mWebView.goBack()
-            else {
-                callback.isEnabled = false
-                onBackPressedDispatcher.onBackPressed()
-            }
-        }
-        binding.appBarSpace.isVisible = wvAtyStyle.barStyle == 0
-        mWebView.addJsInterface(WebViewJsBridge(mWebView, this))
-        mWebView.setLifecycleOwner(this)
-        binding.webViewContainer.addView(
-            mWebView, RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT
-            )
-        )
-    }
+        val args = bundleOf(Constants.Params.ARG1 to url, Constants.Params.ARG2 to wvAtyStyle)
+        loadFirstFragment(WebViewFragment::class.java, args)
 
-    override fun doExtra() {
-        runOnUiThread { mWebView.loadUrl(url) }
     }
 
     companion object {
+        const val BAR_NORMAL = 0
+        const val BAR_TRANSPORT = 2
+        const val BAR_REMOVE = 3
         fun start(context: Context, url: String, title: String? = null, barStyle: Int = 0) {
             val webviewStyle = WebViewAtyStyle()
             webviewStyle.title = title ?: ""

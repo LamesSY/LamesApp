@@ -40,7 +40,7 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
         setContentView(binding.root)
         initialization()
         getLmAppBar()?.let { appBar ->
-            appBar.onAppBackClick = { onBackPressedDispatcher.onBackPressed() }
+            appBar.onAppBackIconClick { onBackPressedDispatcher.onBackPressed() }
         }
         bindEvent()
         doExtra()

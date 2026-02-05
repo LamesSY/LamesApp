@@ -14,6 +14,13 @@ fun AppCompatActivity.loadFirstFragment(fcViewId: Int, fragmentClass: Class<out 
     }
 }
 
+fun AppCompatActivity.loadFirstFragment(fragmentClass: Class<out Fragment>, args: Bundle? = null) {
+    supportFragmentManager.commit {
+        setReorderingAllowed(true)
+        replace(R.id.fcView, fragmentClass, args)
+    }
+}
+
 /**
  * 叠加新的fragment
  */

@@ -42,7 +42,7 @@ abstract class CommonFragment<T : ViewBinding> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initialization()
         getLmAppBar()?.let { appBar ->
-            appBar.onAppBackClick = { dispatcher.onBackPressed() }
+            appBar.onAppBackIconClick { dispatcher.onBackPressed() }
         }
         bindEvent()
         doExtra()
