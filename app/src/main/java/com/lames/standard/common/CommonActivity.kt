@@ -22,7 +22,7 @@ abstract class CommonActivity<T : ViewBinding> : AppCompatActivity() {
 
     lateinit var binding: T
 
-    protected var loadingDialog = LoadingOverlayController(this)
+    protected var loadingDialog = ActivityLoadingOverlayController(this)
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)

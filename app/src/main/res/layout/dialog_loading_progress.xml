@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:background="@drawable/shape_round_rect_r5"
-    android:backgroundTint="?attr/text_4"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingHorizontal="15dp"
-    android:paddingVertical="10dp">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ProgressBar
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:indeterminateTint="?attr/windowBg_1" />
-
-    <TextView
-        android:id="@+id/loadingStr"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:visibility="gone"
-        android:textColor="?attr/text_1_rev"
-        android:textSize="14sp" />
+        android:layout_gravity="center"
+        android:background="@drawable/shape_round_rect_r15"
+        android:backgroundTint="?attr/text_4"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp">
 
-</LinearLayout>
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:indeterminateTint="?attr/windowBg_1" />
+
+        <TextView
+            android:id="@+id/loadingStr"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textColor="?attr/text_1_rev"
+            android:textSize="14sp"
+            android:visibility="gone"
+            tools:text="test test 加载中… test test"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</FrameLayout>

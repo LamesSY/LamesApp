@@ -10,12 +10,15 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 import com.lames.standard.R
+import com.lames.standard.tools.forString
 
 abstract class CommonDialogFragment<T : ViewBinding> : DialogFragment() {
 
     private var _binding: T? = null
 
     protected val binding: T get() = _binding!!
+
+    protected var loadingDialog = DialogLoadingOverlayController(this)
 
     protected val parentActivity: CommonActivity<*> by lazy { requireActivity() as CommonActivity<*> }
 
@@ -65,15 +68,15 @@ abstract class CommonDialogFragment<T : ViewBinding> : DialogFragment() {
     protected open fun doExtra() {}
 
     protected fun showProgressDialog(content: String = Constants.Project.EMPTY_STR) {
-        parentActivity.showProgressDialog(content)
+        loadingDialog.show(content)
     }
 
     protected fun showProgressDialog(@StringRes content: Int) {
-        parentActivity.showProgressDialog(content)
+        showProgressDialog(forString(content))
     }
 
     protected fun dismissProgressDialog() {
-        parentActivity.dismissProgressDialog()
+        loadingDialog.dismiss()
     }
 
     override fun onDestroyView() {

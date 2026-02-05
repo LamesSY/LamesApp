@@ -5,18 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.ComponentActivity
-import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isGone
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.lames.standard.R
 
-class LoadingOverlayController(
+class ActivityLoadingOverlayController(
     private val activity: ComponentActivity,
 ) : DefaultLifecycleObserver {
 
     private var overlayView: View? = null
-    private var backCallback: OnBackPressedCallback? = null
 
     init {
         activity.lifecycle.addObserver(this)
@@ -28,8 +26,7 @@ class LoadingOverlayController(
             return
         }
 
-        val root = activity.window.decorView as ViewGroup
-
+        val root = activity.findViewById<ViewGroup>(android.R.id.content)
         val view = LayoutInflater.from(activity)
             .inflate(R.layout.dialog_loading_progress, root, false)
 
@@ -40,14 +37,10 @@ class LoadingOverlayController(
 
         root.addView(view)
         overlayView = view
-
-        interceptBack()
     }
 
     fun updateMessage(message: String?) {
-        overlayView?.let {
-            updateMessageInternal(it, message)
-        }
+        overlayView?.let { updateMessageInternal(it, message) }
     }
 
     fun dismiss() {
@@ -55,36 +48,15 @@ class LoadingOverlayController(
             (it.parent as? ViewGroup)?.removeView(it)
         }
         overlayView = null
-        removeBackInterceptor()
     }
 
-    // ---------- Back ----------
-    private fun interceptBack() {
-        if (backCallback != null) return
-
-        backCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                // 什么都不做，屏蔽返回
-            }
-        }.also {
-            activity.onBackPressedDispatcher.addCallback(activity, it)
-        }
-    }
-
-    private fun removeBackInterceptor() {
-        backCallback?.remove()
-        backCallback = null
-    }
-
-    // ---------- Lifecycle ----------
     override fun onDestroy(owner: LifecycleOwner) {
         dismiss()
-        activity.lifecycle.removeObserver(this)
     }
 
     private fun updateMessageInternal(view: View, message: String?) {
-        val v = view.findViewById<TextView>(R.id.loadingStr)
-        v?.isGone = message.isNullOrEmpty()
-        v?.text = message ?: ""
+        val tv = view.findViewById<TextView>(R.id.loadingStr)
+        tv?.isGone = message.isNullOrEmpty()
+        tv?.text = message ?: ""
     }
 }
