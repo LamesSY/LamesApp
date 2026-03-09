@@ -13,6 +13,7 @@ class DialogLoadingOverlayController(
 ) {
 
     private var overlayView: View? = null
+    private var previousCancelable: Boolean = true
 
     fun show(message: String? = null) {
         val window = dialogFragment.dialog?.window ?: return
@@ -22,6 +23,9 @@ class DialogLoadingOverlayController(
             updateMessage(message)
             return
         }
+
+        previousCancelable = dialogFragment.isCancelable
+        dialogFragment.isCancelable = false
 
         val view = LayoutInflater.from(window.context)
             .inflate(R.layout.dialog_loading_progress, root, false)
@@ -44,6 +48,7 @@ class DialogLoadingOverlayController(
             (it.parent as? ViewGroup)?.removeView(it)
         }
         overlayView = null
+        dialogFragment.isCancelable = previousCancelable
     }
 
     private fun updateMessageInternal(view: View, message: String?) {

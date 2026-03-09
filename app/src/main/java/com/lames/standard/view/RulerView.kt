@@ -298,14 +298,14 @@ class RulerView @JvmOverloads constructor(
     private fun calculateSize(isWidth: Boolean, spec: Int): Int {
         val mode = MeasureSpec.getMode(spec)
         val size = MeasureSpec.getSize(spec)
-        var realSize = size
-        if (MeasureSpec.AT_MOST == mode) {
-            if (isWidth.not()) {
-                val defaultContentSize = dp2px(80f)
-                realSize = realSize.coerceAtMost(defaultContentSize)
-            }
+        val defaultSize = if (isWidth) dp2px(200f) else dp2px(80f)
+
+        return when (mode) {
+            MeasureSpec.EXACTLY -> size // 对应固定 dp 或 match_parent
+            MeasureSpec.AT_MOST -> size.coerceAtMost(defaultSize) // 对应受限的 wrap_content
+            MeasureSpec.UNSPECIFIED -> defaultSize // 对应 ScrollView 内部的无限空间，直接使用默认高度！
+            else -> defaultSize
         }
-        return realSize
     }
 
     override fun setEnabled(enabled: Boolean) {

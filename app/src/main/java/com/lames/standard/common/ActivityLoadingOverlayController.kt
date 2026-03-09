@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.core.view.isGone
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -14,6 +16,7 @@ class ActivityLoadingOverlayController(
     private val activity: ComponentActivity,
 ) : DefaultLifecycleObserver {
 
+    private var callback: OnBackPressedCallback? = null
     private var overlayView: View? = null
 
     init {
@@ -37,6 +40,8 @@ class ActivityLoadingOverlayController(
 
         root.addView(view)
         overlayView = view
+
+        callback = activity.onBackPressedDispatcher.addCallback { }
     }
 
     fun updateMessage(message: String?) {
@@ -48,6 +53,8 @@ class ActivityLoadingOverlayController(
             (it.parent as? ViewGroup)?.removeView(it)
         }
         overlayView = null
+        callback?.remove()
+        callback = null
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
