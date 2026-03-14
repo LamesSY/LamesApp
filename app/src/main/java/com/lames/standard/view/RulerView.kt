@@ -298,14 +298,13 @@ class RulerView @JvmOverloads constructor(
     private fun calculateSize(isWidth: Boolean, spec: Int): Int {
         val mode = MeasureSpec.getMode(spec)
         val size = MeasureSpec.getSize(spec)
-        var realSize = size
-        if (MeasureSpec.AT_MOST == mode) {
-            if (isWidth.not()) {
-                val defaultContentSize = dp2px(80f)
-                realSize = realSize.coerceAtMost(defaultContentSize)
-            }
+        val defaultSize = if (isWidth) dp2px(200f) else dp2px(80f)
+        return when (mode) {
+            MeasureSpec.EXACTLY -> size
+            MeasureSpec.AT_MOST -> size.coerceAtMost(defaultSize)
+            MeasureSpec.UNSPECIFIED -> defaultSize
+            else -> defaultSize
         }
-        return realSize
     }
 
     override fun setEnabled(enabled: Boolean) {

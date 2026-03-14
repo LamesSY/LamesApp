@@ -5,16 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isGone
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.lames.standard.R
 
 class ActivityLoadingOverlayController(
-    private val activity: ComponentActivity,
+    private val activity: ComponentActivity
 ) : DefaultLifecycleObserver {
 
     private var overlayView: View? = null
+    private var backCallback: OnBackPressedCallback? = null
 
     init {
         activity.lifecycle.addObserver(this)
@@ -37,6 +39,8 @@ class ActivityLoadingOverlayController(
 
         root.addView(view)
         overlayView = view
+
+        interceptBack()
     }
 
     fun updateMessage(message: String?) {
@@ -48,6 +52,27 @@ class ActivityLoadingOverlayController(
             (it.parent as? ViewGroup)?.removeView(it)
         }
         overlayView = null
+        removeBackInterceptor()
+    }
+
+    private fun interceptBack() {
+        if (backCallback != null) return
+
+        backCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // 吃掉返回
+            }
+        }
+
+        activity.onBackPressedDispatcher.addCallback(
+            activity,
+            backCallback!!
+        )
+    }
+
+    private fun removeBackInterceptor() {
+        backCallback?.remove()
+        backCallback = null
     }
 
     override fun onDestroy(owner: LifecycleOwner) {

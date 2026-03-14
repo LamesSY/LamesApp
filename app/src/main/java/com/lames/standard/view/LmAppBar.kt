@@ -9,8 +9,6 @@ import androidx.core.view.isVisible
 import com.lames.standard.R
 import com.lames.standard.databinding.ViewAppBarBinding
 import com.lames.standard.image.ImageKit
-import com.lames.standard.tools.forColor
-import com.lames.standard.tools.forString
 import com.lames.standard.tools.onClick
 
 class LmAppBar @JvmOverloads constructor(
@@ -37,7 +35,7 @@ class LmAppBar @JvmOverloads constructor(
     }
 
     fun setTitle(resId: Int) {
-        setTitle(forString(resId))
+        setTitle(context.getString(resId))
     }
 
     fun setTitle(content: String) {
@@ -45,7 +43,7 @@ class LmAppBar @JvmOverloads constructor(
     }
 
     fun setNormalTheme() {
-        binding.lmAppBar.setBackgroundColor(forColor(R.color.windowBg_1))
+        binding.lmAppBar.setBackgroundColor(context.getColor(R.color.windowBg_1))
     }
 
     fun setTranTheme() {
