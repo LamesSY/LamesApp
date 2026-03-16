@@ -1,6 +1,7 @@
 package com.lames.standard.tools
 
 import android.os.Bundle
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -15,53 +16,27 @@ fun AppCompatActivity.loadFirstFragment(fcViewId: Int, fragmentClass: Class<out 
 }
 
 fun AppCompatActivity.loadFirstFragment(fragmentClass: Class<out Fragment>, args: Bundle? = null) {
-    supportFragmentManager.commit {
-        setReorderingAllowed(true)
-        replace(R.id.fcView, fragmentClass, args)
-    }
+    loadFirstFragment(R.id.fcView, fragmentClass, args)
 }
 
-/**
- * 叠加新的fragment
- */
-fun Fragment.addFg(
-    fragmentClass: Class<out CommonFragment<*>>,
-    args: Bundle? = null,
-    containerId: Int,
-) = parentFragmentManager.commit {
-    setReorderingAllowed(true)
-    setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
-    add(containerId, fragmentClass, args)
-    addToBackStack("")
-}
-
-/**
- * 替换新的fragment
- */
-fun Fragment.replaceFg(
-    fragmentClass: Class<out CommonFragment<*>>,
-    args: Bundle? = null,
-    containerId: Int,
-) = parentFragmentManager.commit {
-    setReorderingAllowed(true)
-    setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
-    replace(containerId, fragmentClass, args)
-    addToBackStack("")
-}
-
-/**
- * 移除当前fg，并新增fg
- */
-fun Fragment.addFgPop(
-    fragmentClass: Class<out CommonFragment<*>>,
-    args: Bundle? = null,
-    containerId: Int,
-) {
-    parentFragmentManager.popBackStackImmediate()
+fun Fragment.startFg(fragmentClass: Class<out CommonFragment<*>>, args: Bundle? = null) {
+    val containerId = (requireView().parent as ViewGroup).id
     parentFragmentManager.commit {
         setReorderingAllowed(true)
         setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
-        add(containerId, fragmentClass, args)
-        addToBackStack("")
+        replace(containerId, fragmentClass, args)
+        addToBackStack(fragmentClass.simpleName)
+    }
+}
+
+fun Fragment.startFgPop(fragmentClass: Class<out CommonFragment<*>>, args: Bundle? = null) {
+    val containerId = (requireView().parent as ViewGroup).id
+    val hasEntry = parentFragmentManager.backStackEntryCount > 0
+    if (hasEntry) parentFragmentManager.popBackStack()
+    parentFragmentManager.commit {
+        setReorderingAllowed(true)
+        setCustomAnimations(R.anim.slide_in, R.anim.fade_out, R.anim.fade_in, R.anim.slide_out)
+        replace(containerId, fragmentClass, args)
+        if (hasEntry) addToBackStack(fragmentClass.simpleName)
     }
 }
